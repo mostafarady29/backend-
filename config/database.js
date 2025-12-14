@@ -12,8 +12,9 @@ const config = {
   },
   options: {
     database: process.env.DB_NAME,
-    trustServerCertificate: true,
-    encrypt: false,
+    port: parseInt(process.env.DB_PORT || '1433'),
+    encrypt: process.env.DB_ENCRYPT === 'true', // Azure requires SSL encryption
+    trustServerCertificate: process.env.DB_TRUST_SERVER_CERTIFICATE === 'true',
     enableArithAbort: true,
   },
   pool: {
